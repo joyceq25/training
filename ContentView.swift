@@ -46,8 +46,14 @@ struct ContentView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle()) //shows handful of options in horizontal ist
                 }
-                Section {
-                    Text("$\(totalPerPerson, specifier: "%.2f")")//%f means any floating-point number, .2 asks for two digits after decimal point 
+                
+                Section(header: Text("Total check amount")) {
+                    let checkTotal = totalPerPerson * Double(numberOfPeople + 2) //computes total before dividing by number of people
+                    Text("$\(checkTotal, specifier: "%.2f")")
+                }
+                
+                Section(header: Text("Amount per person")) {
+                    Text("$\(totalPerPerson, specifier: "%.2f")")//%f means any floating-point number, .2 asks for two digits after decimal point
                 }
             }
             .navigationBarTitle("WeSplit") //title inside navigation view allows iOS to change it freely
